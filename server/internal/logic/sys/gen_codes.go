@@ -218,6 +218,10 @@ func (s *sSysGenCodes) TableSelect(ctx context.Context, in *sysin.GenCodesTableS
 		lists         []*sysin.GenCodesTableSelectModel
 	)
 
+	// 获取 removePrefix 配置
+	daoConfig := hggen.GetDaoConfig(in.Name)
+	removePrefixArray := gstr.SplitAndTrim(daoConfig.RemovePrefix, ",")
+
 	// 根据数据库类型使用不同的SQL
 	if config.Type == consts.DBPgsql {
 		// PostgreSQL: 使用pg_catalog查询表和注释
@@ -256,8 +260,14 @@ func (s *sSysGenCodes) TableSelect(ctx context.Context, in *sysin.GenCodesTableS
 			return
 		}
 
+		// 应用 removePrefix 配置，移除指定的前缀
+		cleanValue := newValue
+		for _, prefix := range removePrefixArray {
+			cleanValue = gstr.TrimLeftStr(cleanValue, prefix, 1)
+		}
+
 		// 如果是插件模块，则移除掉插件表前缀
-		bt, err := gregex.Replace(patternStr, []byte(repStr), []byte(newValue))
+		bt, err := gregex.Replace(patternStr, []byte(repStr), []byte(cleanValue))
 		if err != nil {
 			err = gerror.Newf("表名[%v] gregex.Replace err:%v", v.Value, err.Error())
 			return nil, err
@@ -265,9 +275,9 @@ func (s *sSysGenCodes) TableSelect(ctx context.Context, in *sysin.GenCodesTableS
 
 		row := v
 		row.DefTableComment = v.Label
-		row.DaoName = gstr.CaseCamel(newValue)
+		row.DaoName = gstr.CaseCamel(cleanValue)
 		row.DefVarName = gstr.CaseCamel(string(bt))
-		row.DefAlias = gstr.CaseCamelLower(newValue)
+		row.DefAlias = gstr.CaseCamelLower(cleanValue)
 		row.Name = fmt.Sprintf("%s (%s)", v.Value, v.Label)
 		row.Label = row.Name
 		res = append(res, row)

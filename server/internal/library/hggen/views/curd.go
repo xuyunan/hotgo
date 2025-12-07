@@ -893,10 +893,10 @@ func (l *gCurd) generateSqlContent(ctx context.Context, in *CurdPreviewInput) (e
 		config  = g.DB("default").GetConfig()
 		tplData = g.Map{
 			"dbName":        config.Name,
-			"menuTable":     config.Prefix + "admin_menu",
+			"menuTable":     "hg_admin_menu",
 			"mainComponent": "LAYOUT",
 		}
-		genFile     = new(sysin.GenFile)
+		genFile      = new(sysin.GenFile)
 		templateName = "source.sql.template"
 	)
 
