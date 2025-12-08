@@ -52,10 +52,12 @@ type GenerateAppTreeTemplate struct {
 
 // GenerateConfig 生成代码配置
 type GenerateConfig struct {
-	AllowedIPs  []string `json:"allowedIPs"`
-	Author      string   `json:"author"`    // 代码作者
-	Copyright   string   `json:"copyright"` // 版权信息
-	Application struct {
+	AllowedIPs        []string `json:"allowedIPs"`
+	Author            string   `json:"author"`            // 代码作者
+	Copyright         string   `json:"copyright"`         // 版权信息
+	HeaderCommentMode string   `json:"headerCommentMode"` // 头部注释模式: "new" - 只在新增文件时添加, "always" - 总是覆盖已存在的文件
+	Application       struct {
+
 		Crud struct {
 			Templates []*GenerateAppCrudTemplate `json:"templates"`
 		} `json:"crud"`

@@ -248,6 +248,9 @@ jaeger:
 # 生成代码
 hggen:
   allowedIPs: [ "127.0.0.1", "*" ]                                      # 白名单，*代表所有，只有允许的IP后台才能使用生成代码功能
+  author: "Your Name <your@email.com>"                                  # 代码作者信息
+  copyright: "Your Company"                                             # 版权信息
+  headerCommentMode: "new"                                              # 头部注释模式: "new" - 只在新增文件时添加, "always" - 总是覆盖已存在的文件
   selectDbs: [ "default" ]                                              # 可选生成表的数据库配置名称，支持多库
   disableTables: [ "hg_sys_gen_codes","hg_admin_role_casbin" ]          # 禁用的表，禁用以后将不会在选择表中看到
   delimiters: [ "@{", "}" ]                                             # 模板引擎变量分隔符号

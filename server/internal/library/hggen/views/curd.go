@@ -579,7 +579,7 @@ func (l *gCurd) generateApiContent(ctx context.Context, in *CurdPreviewInput) (e
 
 	genFile.Required = true
 
-	if genFile.Meth == consts.GenCodesBuildMethSkip && gstr.InArray(in.options.AutoOps, "forcedCover") {
+	if genFile.Meth == consts.GenCodesBuildMethSkip && (gstr.InArray(in.options.AutoOps, "forcedCover") || in.Config.HeaderCommentMode == "always") {
 		genFile.Meth = consts.GenCodesBuildMethCover
 	}
 
@@ -615,7 +615,7 @@ func (l *gCurd) generateInputContent(ctx context.Context, in *CurdPreviewInput) 
 	}
 	genFile.Required = true
 
-	if genFile.Meth == consts.GenCodesBuildMethSkip && gstr.InArray(in.options.AutoOps, "forcedCover") {
+	if genFile.Meth == consts.GenCodesBuildMethSkip && (gstr.InArray(in.options.AutoOps, "forcedCover") || in.Config.HeaderCommentMode == "always") {
 		genFile.Meth = consts.GenCodesBuildMethCover
 	}
 
@@ -647,7 +647,7 @@ func (l *gCurd) generateControllerContent(ctx context.Context, in *CurdPreviewIn
 	}
 	genFile.Required = true
 
-	if genFile.Meth == consts.GenCodesBuildMethSkip && gstr.InArray(in.options.AutoOps, "forcedCover") {
+	if genFile.Meth == consts.GenCodesBuildMethSkip && (gstr.InArray(in.options.AutoOps, "forcedCover") || in.Config.HeaderCommentMode == "always") {
 		genFile.Meth = consts.GenCodesBuildMethCover
 	}
 
@@ -683,7 +683,7 @@ func (l *gCurd) generateLogicContent(ctx context.Context, in *CurdPreviewInput) 
 	}
 	genFile.Required = true
 
-	if genFile.Meth == consts.GenCodesBuildMethSkip && gstr.InArray(in.options.AutoOps, "forcedCover") {
+	if genFile.Meth == consts.GenCodesBuildMethSkip && (gstr.InArray(in.options.AutoOps, "forcedCover") || in.Config.HeaderCommentMode == "always") {
 		genFile.Meth = consts.GenCodesBuildMethCover
 	}
 
@@ -714,7 +714,7 @@ func (l *gCurd) generateRouterContent(ctx context.Context, in *CurdPreviewInput)
 	}
 	genFile.Required = true
 
-	if genFile.Meth == consts.GenCodesBuildMethSkip && gstr.InArray(in.options.AutoOps, "forcedCover") {
+	if genFile.Meth == consts.GenCodesBuildMethSkip && (gstr.InArray(in.options.AutoOps, "forcedCover") || in.Config.HeaderCommentMode == "always") {
 		genFile.Meth = consts.GenCodesBuildMethCover
 	}
 
