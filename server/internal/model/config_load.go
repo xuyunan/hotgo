@@ -53,6 +53,8 @@ type GenerateAppTreeTemplate struct {
 // GenerateConfig 生成代码配置
 type GenerateConfig struct {
 	AllowedIPs  []string `json:"allowedIPs"`
+	Author      string   `json:"author"`    // 代码作者
+	Copyright   string   `json:"copyright"` // 版权信息
 	Application struct {
 		Crud struct {
 			Templates []*GenerateAppCrudTemplate `json:"templates"`

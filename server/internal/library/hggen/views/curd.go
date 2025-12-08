@@ -384,6 +384,8 @@ func (l *gCurd) loadView(ctx context.Context, in *CurdPreviewInput) (err error) 
 
 	nowTime := now.Format("Y-m-d H:i:s")
 	view.Assigns(gview.Params{
+		"Author":           in.Config.Author,                                            // 代码作者
+		"Copyright":        in.Config.Copyright,                                         // 版权信息
 		"templateGroup":    in.options.TemplateGroup,                                    // 生成模板分组名称
 		"servFunName":      l.parseServFunName(in.options.TemplateGroup, in.In.VarName), // 业务服务名称
 		"nowTime":          nowTime,                                                     // 当前时间
