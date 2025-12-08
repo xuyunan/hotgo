@@ -1,6 +1,6 @@
-// @Copyright  Copyright (c) @{NowYear} @{.Copyright}
-// @Author  @{.Author}
-// @AutoGenerate Version @{.hgVersion}
+// @Copyright @{.Copyright}
+// @Author @{.Author}
+// @AutoGenerate v@{.hgVersion}
 
 package @{.templateGroup}
 
